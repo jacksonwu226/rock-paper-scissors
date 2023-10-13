@@ -20,20 +20,37 @@ function playRound(playerSelection, computerSelection){
     return `You both chose ${computerSelection}! It is a draw!`
   }
   else if(playerSel == "rock" && computerSel == "scissors"){
+    ++playerPoints
     return `You win! ${playerSel} beats ${computerSel}`
   }
   else if(playerSel == "paper" && computerSel == "rock"){
+    ++playerPoints
     return `You win! ${playerSel} beats ${computerSel}`
   }  
   else if(playerSel == "scissors" && computerSel == "paper"){
+    ++playerPoints
     return `You win! ${playerSel} beats ${computerSel}`
   }
   else{
+    ++computerPoints
     return `You lose! ${computerSel} beats ${playerSel}`
   }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice()
+let playerPoints
+let computerPoints
 
-console.log(playRound(playerSelection, computerSelection))
+function game(){
+  let playerSelection
+  let computerSelection
+  playerPoints = 0
+  computerPoints = 0
+  for(let i = 0; i < 5; ++i){
+    playerSelection = prompt("Enter your choice: ")
+    computerSelection = getComputerChoice()
+    console.log(playRound(playerSelection, computerSelection))
+  }
+  console.log(`Player score: ${playerPoints} \t Computer score: ${computerPoints}`)
+}
+
+game()
