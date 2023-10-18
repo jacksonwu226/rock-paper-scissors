@@ -1,3 +1,6 @@
+let playerPoints
+let computerPoints
+
 function getRandomInt(min,max){
   return Math.floor(Math.random()*(max-min))+min
 }
@@ -37,20 +40,42 @@ function playRound(playerSelection, computerSelection){
   }
 }
 
-let playerPoints
-let computerPoints
-
 function game(){
-  let playerSelection
-  let computerSelection
-  playerPoints = 0
-  computerPoints = 0
-  for(let i = 0; i < 5; ++i){
-    playerSelection = prompt("Enter your choice: ")
-    computerSelection = getComputerChoice()
-    console.log(playRound(playerSelection, computerSelection))
-  }
-  console.log(`Player score: ${playerPoints} \t Computer score: ${computerPoints}`)
+
 }
+
+const buttons = document.querySelectorAll('button')
+
+buttons.forEach(button=>{
+  button.addEventListener('click', () =>{
+    if(button.className === 'rock-btn'){
+      playerSelection = 'rock'
+    }
+    else if(button.className === 'scissors-btn')
+    {
+      playerSelection = 'scissors'
+    }
+    else if(button.className === 'paper-btn')
+    {
+      playerSelection = 'paper'
+    }
+    alert(playerSelection)
+  })
+})
+
+
+// function game(){
+//   let playerSelection
+//   let computerSelection
+//   playerPoints = 0
+//   computerPoints = 0
+//   for(let i = 0; i < 5; ++i){
+//     playerSelection = prompt("Enter your choice: ")
+//     computerSelection = getComputerChoice()
+//     console.log(playRound(playerSelection, computerSelection))
+//   }
+//   console.log(`Player score: ${playerPoints} \t Computer score: ${computerPoints}`)
+// }
+
 
 game()
