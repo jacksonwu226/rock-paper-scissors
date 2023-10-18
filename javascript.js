@@ -75,5 +75,3 @@ buttons.forEach(button=>{
     //alert(playerSelection)
   })
 })
-
-game()
