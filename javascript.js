@@ -1,5 +1,5 @@
-let playerPoints
-let computerPoints
+let playerPoints = 0
+let computerPoints = 0
 
 function getRandomInt(min,max){
   return Math.floor(Math.random()*(max-min))+min
@@ -40,11 +40,15 @@ function playRound(playerSelection, computerSelection){
   }
 }
 
-function game(){
-
+function displayScore(){
+  score_board.textContent = `Player Score: ${playerPoints}\t\tAI Score: ${computerPoints}`
 }
-
+function displayRound(results){
+  round_result.textContent = results
+}
 const buttons = document.querySelectorAll('button')
+const score_board = document.querySelector(".score")
+const round_result = document.querySelector('.round-result')
 
 buttons.forEach(button=>{
   button.addEventListener('click', () =>{
@@ -59,23 +63,12 @@ buttons.forEach(button=>{
     {
       playerSelection = 'paper'
     }
-    alert(playerSelection)
+    
+    displayRound(playRound(playerSelection, getComputerChoice()))
+    displayScore()
+
+    //alert(playerSelection)
   })
 })
-
-
-// function game(){
-//   let playerSelection
-//   let computerSelection
-//   playerPoints = 0
-//   computerPoints = 0
-//   for(let i = 0; i < 5; ++i){
-//     playerSelection = prompt("Enter your choice: ")
-//     computerSelection = getComputerChoice()
-//     console.log(playRound(playerSelection, computerSelection))
-//   }
-//   console.log(`Player score: ${playerPoints} \t Computer score: ${computerPoints}`)
-// }
-
 
 game()
