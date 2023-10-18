@@ -22,20 +22,18 @@ function playRound(playerSelection, computerSelection){
   if(playerSel == computerSel){
     return `You both chose ${computerSelection}! It is a draw!`
   }
-  else if(playerSel == "rock" && computerSel == "scissors"){
-    ++playerPoints
-    return `You win! ${playerSel} beats ${computerSel}`
-  }
-  else if(playerSel == "paper" && computerSel == "rock"){
-    ++playerPoints
-    return `You win! ${playerSel} beats ${computerSel}`
-  }  
-  else if(playerSel == "scissors" && computerSel == "paper"){
-    ++playerPoints
-    return `You win! ${playerSel} beats ${computerSel}`
-  }
+  else if(playerSel == "rock" && computerSel == "scissors" ||
+          playerSel == "paper" && computerSel == "rock" ||
+          playerSel == "scissors" && computerSel == "paper"){
+          ++playerPoints
+          if(playerPoints >=5)
+            return 'You won!'
+          return `You win! ${playerSel} beats ${computerSel}`
+    }
   else{
     ++computerPoints
+    if(computerPoints >= 5)
+      return 'You lost!'
     return `You lose! ${computerSel} beats ${playerSel}`
   }
 }
@@ -65,8 +63,15 @@ buttons.forEach(button=>{
     }
     
     displayRound(playRound(playerSelection, getComputerChoice()))
-    displayScore()
-
+    if(playerPoints < 5 && computerPoints < 5)
+    {
+      displayScore()
+    }
+    else{
+      playerPoints = 0
+      computerPoints = 0
+      score_board.textContent = ''
+    }
     //alert(playerSelection)
   })
 })
